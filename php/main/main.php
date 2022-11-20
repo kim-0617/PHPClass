@@ -44,12 +44,120 @@
             </div>
         </section>
         <!-- // banner -->
+
+        <section id="card" class="container">
+            <h2>블로그 최신글!</h2>
+            <a href="http://als1702.dothome.co.kr/php/blog/blog.php" class="main__blog__more">더 보기</a>
+            <div class="card__inner">
+                <?php
+                    if(isset($_GET['page'])) {
+                        $page = (int)$_GET['page'];
+                    }
+                    else {
+                        $page = 1;
+                    }
+                    $viewNum = 8;
+                    $viewLimit = ($viewNum * $page) - $viewNum;
+                    $sql = "SELECT * FROM myBlog WHERE blogDelete = 0 ORDER BY myBlogID DESC LIMIT 0, 8;";
+                    $result = $connect -> query($sql);
+
+                    foreach($result as $blog) { ?>
+                        <div class="card">
+                            <figure>
+                                <img src="../asset/img/blog/<?=$blog['blogImgFile']?>" alt="카드1번">
+                                <a href="http://als1702.dothome.co.kr/php/blog/blogView.php?blogID=<?=$blog['myBlogID']?>" class="go" title="컨텐츠 바로가기"></a>
+                            </figure>
+                            <div>
+                                <a href="http://als1702.dothome.co.kr/php/blog/blogView.php?blogID=<?=$blog['myBlogID']?>">
+                                    <h3><?=$blog['blogTitle']?></h3>
+                                    <p><?=$blog['blogContents']?></p>
+                                </a>
+                            </div>
+                            <span class="cate"><?=$blog['blogCategory']?></span>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                <!-- // card01 -->
+            </div>
+        </section>
+        <!-- // card -->
+        
+        <section id="board" class="container">
+            <h3 class="main__board__title">게시판 최신글!</h3>
+            <a href="http://als1702.dothome.co.kr/php/board/board.php" class="main__board__more">더 보기</a>
+            <div class="board__inner">
+                <div class="board__table">
+                    <table>
+                        <colgroup>
+                            <col style="width: 5%;">
+                            <col>
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                            <col style="width: 7%;">
+                        </colgroup>
+                        
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>등록자</th>
+                                <th>등록일</th>
+                                <th>조회수</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                                if(isset($_GET['page'])) {
+                                    $page = (int)$_GET['page'];
+                                }
+                                else {
+                                    $page = 1;
+                                }
+                                $viewNum = 10;
+                                $viewLimit = ($viewNum * $page) - $viewNum;
+                                
+                                $sql = "SELECT count(myBoardID) FROM myBoard";
+                                $result = $connect -> query($sql);
+
+                                $boardCount = $result -> fetch_array(MYSQLI_ASSOC);
+                                $boardCount = $boardCount['count(myBoardID)'];
+
+                                $sql = "SELECT b.myBoardID, b.boardTitle, m.youName, b.regTime, b.boardView FROM myBoard b JOIN myMember m ON (b.myMemberID = m.myMemberID) ORDER BY myBoardID DESC LIMIT 0, {$viewNum}";
+                                $result = $connect -> query($sql);
+                                
+                                if($result) {
+                                    $count = $result -> num_rows;
+                                    if($count > 0) {
+                                        for($i = 1; $i <= $count; $i++) {
+                                            $info = $result -> fetch_array(MYSQLI_ASSOC);
+                                            echo "<tr>";
+                                            echo "<td>".$info['myBoardID']."</td>";
+                                            echo "<td><a href='http://als1702.dothome.co.kr/php/board/boardView.php?myBoardID={$info['myBoardID']}'>".$info['boardTitle']."</a></td>";
+                                            echo "<td>".$info['youName']."</td>";
+                                            echo "<td>".date('Y-m-d', $info['regTime'])."</td>";
+                                            echo "<td>".$info['boardView']."</td>";
+                                            echo "</tr>";
+                                        }
+                                    }
+                                    else {
+                                        echo "<tr><td colspan='4'>게시글이 없습니다.</td></tr>";
+                                    }
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    <!-- // board -->
     </main>
     <!-- // main -->
 
     <?php include "../include/footer.php";?>
     <!-- //footer -->
-
+    
     <?php include "../login/login.php" ?>
     <!-- // login popup -->
 

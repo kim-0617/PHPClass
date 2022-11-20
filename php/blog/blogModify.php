@@ -29,11 +29,21 @@
     <?php include "../include/header.php";?>
     <!-- // header -->
 
+    <?php
+        $myBlogID = $_GET['myBlogID'];
+        $sql = "SELECT myBlogID, blogTitle, blogContents, blogCategory FROM myBlog WHERE myBlogID = $myBlogID";
+        $result = $connect -> query($sql);
+        $info = $result -> fetch_array(MYSQLI_ASSOC);
+        $blogTitle = $info['blogTitle'];
+        $blogContents = $info['blogContents'];
+        $category = $info['blogCategory'];
+    ?>
+
     <main id="main">
         <section id="blogWrite">
-            <h2>블로그 글쓰기 입니다.</h2>
+            <h2>블로그 글수정 입니다.</h2>
             <div class="write__inner container">
-                <form action="blogWriteSave.php" method="post" enctype="multipart/form-data" name="blogWrite">
+                <form action="blogModifySave.php" method="post" enctype="multipart/form-data" name="blogModify">
                     <fieldset>
                         <legend>블로그 게시글 작성 영역</legend>
                         <div>
@@ -49,13 +59,13 @@
 
                         <div>
                             <label for="blogTitle">제목</label>
-                            <input type="text" name="blogTitle" id="blogTitle" placeholder="제목을 넣어주세요" required>
+                            <input type="text" name="blogTitle" id="blogTitle" placeholder="제목을 넣어주세요" required value="<?=$blogTitle?>">
                         </div>
                         <!-- 02 -->
 
                         <div>
                             <label for="blogContents">내용</label>
-                            <textarea name="blogContents" id="blogContents" placeholder="내용을 넣어주세요" required></textarea>
+                            <textarea name="blogContents" id="blogContents" placeholder="내용을 넣어주세요" required><?=$blogContents?></textarea>
                         </div>
                         <!-- 03 -->
 
@@ -79,7 +89,11 @@
     <?php include "../login/login.php" ?>
     <!-- // login popup -->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../asset/js/custom.js"></script>
+    <script>
+        $("#blogCategory").val("<?=$category?>").prop("selected", true);
+    </script>
 </body>
 
 </html>

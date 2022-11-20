@@ -7,6 +7,7 @@
     $blogSql = "SELECT * FROM myBlog WHERE myBlogID=$myBlogID";
     $blogResult = $connect -> query($blogSql);
     $blogInfo = $blogResult -> fetch_array(MYSQLI_ASSOC);
+    $blogIDData = $_GET['blogID'];
 
     $commentSql = "SELECT * FROM myComment WHERE myBlogID='$myBlogID' ORDER BY myCommentID DESC";
     $commentResult = $connect -> query($commentSql);
@@ -54,8 +55,8 @@
                             <span class="date"><?=date('Y-m-d',$blogInfo['blogRegTime'])?></span>
                         </div>
                         <div>
-                            <a href="#" class="modify">수정</a>
-                            <a href="#" class="delete">삭제</a>
+                            <a href="./blogModify.php?myBlogID=<?=$blogIDData?>" class="modify">수정</a>
+                            <a href="./blogDelete.php?myBlogID=<?=$blogIDData?>" class="delete">삭제</a>
                         </div>
                     </div>
                     <!-- // info -->
@@ -203,6 +204,15 @@
     <script src="../asset/js/custom.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+        const deleteBtn = document.querySelector('.delete');
+
+        deleteBtn.addEventListener('click', (e) => {
+            if(!confirm("정말로 삭제하시겠습니까?")) {
+                e.preventDefault();
+                return;
+            }
+        });
+
         const commentName = $("#commentName");
         const commentPass = $("#commentPass");
         const commentWrite  = $("#commentWrite");

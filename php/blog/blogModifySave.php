@@ -25,21 +25,11 @@
     $blogImgType = $_FILES['blogFile']['type'];
     $blogImgName = $_FILES['blogFile']['name'];
     $blogImgTmp = $_FILES['blogFile']['tmp_name'];
-    echo "<pre>";
-    var_dump($blogImgFile);
-    echo "</pre>";
-    // array(5) {
-    //     ["name"]=>
-    //     string(9) "icon1.png"
-    //     ["type"]=>
-    //     string(9) "image/png"
-    //     ["tmp_name"]=>
-    //     string(36) "/Applications/MAMP/tmp/php/phpWOWyQJ"
-    //     ["error"]=>
-    //     int(0)
-    //     ["size"]=>
-    //     int(1479)
-    // }
+    
+    // echo "<pre>";
+    // var_dump($blogImgFile);
+    // echo "</pre>";
+
     //이미지 파일명 확인
     if($blogImgType){
         $fileTypeExtension = explode("/", $blogImgType);

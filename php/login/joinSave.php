@@ -140,7 +140,6 @@
                         if($isPhoneCheck && $isEmailCheck) {
                         $sql = "INSERT INTO myMember(youEmail, youName, youPass, youNickName, youPhone, regTime) VALUES('$youEmail', '$youName', '$youPass', '$youNickName', '$youPhone', '$regTime');";
                         $result = $connect -> query($sql);
-
                         if($result){
                             msg("회원가입을 축하합니다!!");
                         }
@@ -160,5 +159,10 @@
     </main>
     <!-- // main -->
     <?php include "../include/footer.php";?>
+    
+    <?php include "../login/login.php" ?>
+    <!-- // login popup -->
+
+    <script src="../asset/js/custom.js"></script>
 </body>
 </html>

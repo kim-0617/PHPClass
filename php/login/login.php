@@ -9,12 +9,12 @@
                 <fieldset>
                     <legend>로그인 입력 폼</legend>
                     <div>
-                        <label for="youEmail">이메일</label>
-                        <input type="email" name="youEmail" id="youEmail" placeholder="이메일" class="input__style" required>
+                        <label for="youEmail2">이메일</label>
+                        <input type="email" name="youEmail2" id="youEmail2" placeholder="이메일" class="input__style" required>
                     </div>
                     <div>
-                        <label for="youPass">비밀번호</label>
-                        <input type="password" name="youPass" id="youPass" placeholder="비밀번호" class="input__style" required>
+                        <label for="youPass2">비밀번호</label>
+                        <input type="password" name="youPass2" id="youPass2" placeholder="비밀번호" class="input__style" required>
                     </div>
                     <button type="submit" class="input__button">로그인</button>
                 </fieldset>
@@ -29,9 +29,8 @@
             </div>
 
             <ul class="desc">
-                <li>비밀번호 분실시 책임 질 수 없습니다.</li>
-                <li>회원가입은 왜하시나요? 그냥 이용해주세요</li>
-                <li>개발자가 초급이여서 개인정보는 노출 될 수 있습니다.</li>
+                <li>* 타 사이트와 비밀번호를 동일하게 사용할 경우 도용의 위험이 있으므로, 정기적인 비밀번호 변경을 해주시길 바랍니다.</li>
+                <li>* 스타벅스 코리아의 공식 홈페이지는 Internet Explorer 9.0 이상, Chrome, Firefox, Safari 브라우저에 최적화 되어있습니다.</li>
             </ul>
             <button type="button" class="btn-close"><span>닫기</span></button>
         </div>

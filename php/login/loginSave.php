@@ -33,8 +33,8 @@
                         include "../connect/connect.php";
                         include "../connect/session.php";
 
-                        $youEmail = $_POST['youEmail'];
-                        $youPass = $_POST['youPass'];
+                        $youEmail = $_POST['youEmail2'];
+                        $youPass = $_POST['youPass2'];
 
                         function msg($alert) {
                             echo "<p class='alert'>$alert</p>";

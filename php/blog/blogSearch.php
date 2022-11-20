@@ -145,5 +145,10 @@
     
     <?php include "../include/footer.php";?>
     <!-- //footer -->
+    
+    <?php include "../login/login.php" ?>
+    <!-- // login popup -->
+
+    <script src="../asset/js/custom.js"></script>
 </body>
 </html>

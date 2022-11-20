@@ -1,5 +1,6 @@
 <!-- STYLE -->
 <link rel="stylesheet" href="../asset/css/style.min.css">
+<link rel="stylesheet" href="../asset/css/etc.css">
 
 <!-- SEO -->
 <meta name="author" content="kim0617">
